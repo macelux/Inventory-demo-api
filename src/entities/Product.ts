@@ -1,16 +1,29 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  Timestamp,
+  UpdateDateColumn,
+} from 'typeorm';
 
-@Entity()
+@Entity('products')
 export class Product {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  firstName: string;
+  name: string;
 
   @Column()
-  lastName: string;
+  price: number;
 
   @Column()
-  role: string;
+  quantity: number;
+
+  @CreateDateColumn()
+  created_at: Timestamp;
+
+  @UpdateDateColumn()
+  updated_at: Timestamp;
 }

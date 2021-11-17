@@ -22,8 +22,8 @@ export class Product {
   quantity: number;
 
   @CreateDateColumn()
-  created_at: Timestamp;
+  created_at: Date;
 
   @UpdateDateColumn()
-  updated_at: Timestamp;
+  updated_at: Date;
 }

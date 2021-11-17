@@ -23,13 +23,15 @@ export class createCartsTable1637159473920 implements MigrationInterface {
           },
           {
             name: 'created_at',
-            type: 'timestamp',
+            type: 'DATETIME',
             isNullable: true,
+            default: 'CURRENT_TIMESTAMP',
           },
           {
             name: 'updated_at',
-            type: 'timestamp',
+            type: 'DATETIME',
             isNullable: true,
+            default: 'CURRENT_TIMESTAMP',
           },
         ],
       }),

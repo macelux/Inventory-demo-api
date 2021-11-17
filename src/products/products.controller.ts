@@ -1,8 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
-import { Product } from '../entities/Product';
 import { ProductsService } from './products.service';
 
-@Controller('api/products')
+@Controller('api/v1/products')
 export class ProductsController {
   constructor(private productService: ProductsService) {}
 

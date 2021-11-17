@@ -22,8 +22,8 @@ export class Cart {
   role: string;
 
   @CreateDateColumn()
-  created_at: Timestamp;
+  created_at: Date;
 
   @UpdateDateColumn()
-  updated_at: Timestamp;
+  updated_at: Date;
 }

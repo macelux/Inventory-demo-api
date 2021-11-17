@@ -3,7 +3,6 @@ import {
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
-  Timestamp,
   UpdateDateColumn,
 } from 'typeorm';
 
@@ -26,8 +25,8 @@ export class CartItem {
   quantity: number;
 
   @CreateDateColumn()
-  created_at: Timestamp;
+  created_at: Date;
 
   @UpdateDateColumn()
-  updated_at: Timestamp;
+  updated_at: Date;
 }

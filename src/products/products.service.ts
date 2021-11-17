@@ -19,12 +19,11 @@ export class ProductsService {
     return this.productRepository.find();
   }
 
-  async updateProducts(product: any) {
-    const findProduct = await this.productRepository.findOne();
+  async updateProducts(product: any, id: number) {
+    return await this.productRepository.update({ id: id }, product);
+  }
 
-    return this.productRepository.save({
-      ...findProduct,
-      ...product,
-    });
+  async deleteProduct(id: number) {
+    return await this.productRepository.delete({ id: id });
   }
 }

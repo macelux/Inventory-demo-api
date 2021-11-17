@@ -6,6 +6,9 @@ export class ProductDto {
   @IsString({
     message: 'This can only contain text values',
   })
+  @IsNotEmpty({
+    message: 'This field cannot be empty',
+  })
   name: string;
 
   @IsNotEmpty({
@@ -17,6 +20,7 @@ export class ProductDto {
   @IsNotEmpty({
     message: 'This field cannot be empty',
   })
+
   @IsNumber()
   quantity: number;
 }

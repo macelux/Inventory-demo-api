@@ -14,28 +14,19 @@ export class createProductsTable1637158292381 implements MigrationInterface {
             generationStrategy: 'increment',
           },
           {
-            name: 'first_name',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'last_name',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'password',
+            name: 'name',
             type: 'varchar',
           },
           {
-            name: 'phone',
-            type: 'text',
-            isNullable: true,
-          },
-          {
-            name: 'status',
-            type: 'tinyint',
+            name: 'price',
+            type: 'decimal',
+            precision: 10,
+            scale: 2,
             default: 0,
+          },
+          {
+            name: 'quantity',
+            type: 'int',
           },
           {
             name: 'created_at',

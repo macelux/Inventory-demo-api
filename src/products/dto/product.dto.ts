@@ -1,0 +1,22 @@
+import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+
+export class ProductDto {
+  id: number;
+
+  @IsString({
+    message: 'This can only contain text values',
+  })
+  name: string;
+
+  @IsNotEmpty({
+    message: 'This field cannot be empty',
+  })
+  @IsNumber()
+  price: number;
+
+  @IsNotEmpty({
+    message: 'This field cannot be empty',
+  })
+  @IsNumber()
+  quantity: number;
+}

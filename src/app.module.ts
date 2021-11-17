@@ -5,9 +5,8 @@ import { ProductsModule } from './products/products.module';
 import { DatabaseModule } from './database/database.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as connectionOptions from './ormconfig';
-import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module';
 
-console.log(connectionOptions);
 @Module({
   imports: [
     // ConfigModule.forRoot({
@@ -19,6 +18,7 @@ console.log(connectionOptions);
     TypeOrmModule.forRoot(connectionOptions),
     ProductsModule,
     DatabaseModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

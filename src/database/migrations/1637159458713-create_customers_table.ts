@@ -8,10 +8,10 @@ export class createCustomersTable1637159458713 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'int',
+            type: 'integer',
             isPrimary: true,
             isGenerated: true,
-            generationStrategy: 'increment',
+            // generationStrategy: 'increment',
           },
           {
             name: 'email',

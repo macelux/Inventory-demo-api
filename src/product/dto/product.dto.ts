@@ -1,7 +1,6 @@
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 export class ProductDto {
-  id: number;
 
   @IsString({
     message: 'This can only contain text values',

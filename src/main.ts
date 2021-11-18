@@ -22,11 +22,13 @@ async function bootstrap() {
 
   // swagger bootstrap
   const config = new DocumentBuilder()
-    .setTitle('Cats example')
-    .setDescription('The cats API description')
+    .setTitle('Inventory Demo Api')
+    .setDescription('All API endpoints')
     .setVersion('1.0')
-    .addTag('cats')
+    .addTag('Inventory ')
+    .addBearerAuth()
     .build();
+
   const options: SwaggerDocumentOptions = {
     operationIdFactory: (controllerKey: string, methodKey: string) => methodKey,
     };

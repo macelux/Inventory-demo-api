@@ -4,13 +4,22 @@ import { FormDataRequest } from 'nestjs-form-data';
 import { ProductService } from './product.service';
 import { CartDto } from './dto/cart.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import {
+  ApiBearerAuth,
+  ApiHeader,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 
+@ApiTags('carts')
+@ApiBearerAuth()
 @Controller('api/v1/carts')
 export class CartController {
   constructor(private productService: ProductService) { }
 
 
   @Post('/')
+  @ApiResponse({ status: 201, description: 'item added to cart' })
   @UseGuards(JwtAuthGuard)
   @FormDataRequest()
   async store(@Res() res, @Body() storeCartDto: CartDto) {

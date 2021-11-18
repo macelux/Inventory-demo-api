@@ -11,12 +11,12 @@ import {
   Res,
 } from '@nestjs/common';
 import { ProductDto } from './dto/product.dto';
-import { ProductsService } from './products.service';
+import { ProductService } from './product.service';
 import { FormDataRequest } from 'nestjs-form-data';
 
 @Controller('api/v1/admin/products')
 export class AdminProductController {
-  constructor(private productService: ProductsService) { }
+  constructor(private productService: ProductService) { }
 
   @Get('/')
   async index(@Res() res) {

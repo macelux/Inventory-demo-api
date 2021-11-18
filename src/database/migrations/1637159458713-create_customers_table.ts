@@ -14,6 +14,10 @@ export class createCustomersTable1637159458713 implements MigrationInterface {
             generationStrategy: 'increment',
           },
           {
+            name: 'email',
+            type: 'varchar',
+          },
+          {
             name: 'first_name',
             type: 'varchar',
             isNullable: true,

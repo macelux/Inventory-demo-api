@@ -1,9 +1,9 @@
 import { Controller, Get } from '@nestjs/common';
-import { ProductsService } from './products.service';
+import { ProductService } from './product.service';
 
 @Controller('api/v1/products')
 export class ProductsController {
-  constructor(private productService: ProductsService) {}
+  constructor(private productService: ProductService) {}
 
   @Get('/')
   index(): any {

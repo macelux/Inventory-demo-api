@@ -18,8 +18,15 @@ export class createCartsTable1637159473920 implements MigrationInterface {
             type: 'int',
           },
           {
+            name: 'total',
+            type: 'decimal',
+            scale: 2,
+            precision: 10,
+            default: 0,
+          },
+          {
             name: 'date_placed',
-            type: 'timestamp',
+            type: 'DATETIME',
           },
           {
             name: 'created_at',

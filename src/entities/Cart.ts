@@ -3,23 +3,26 @@ import {
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
-  Timestamp,
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity()
+@Entity('cart')
 export class Cart {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  firstName: string;
+  @Column({
+    name: 'customer_id',
+  })
+  customerId: number;
 
   @Column()
-  lastName: string;
+  total: number;
 
-  @Column()
-  role: string;
+  @Column({
+    name: 'date_placed',
+  })
+  datePlaced: Date;
 
   @CreateDateColumn()
   created_at: Date;

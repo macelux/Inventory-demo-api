@@ -27,6 +27,7 @@ export class createCartsTable1637159473920 implements MigrationInterface {
           {
             name: 'date_placed',
             type: 'DATETIME',
+            default: 'CURRENT_TIMESTAMP',
           },
           {
             name: 'created_at',

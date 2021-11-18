@@ -12,13 +12,11 @@ export class CartController {
   @Post('/')
   @FormDataRequest()
   async store(@Res() res, @Body() storeCartDto: CartDto) {
-    console.log(storeCartDto);
-    // const newProduct = await this.productService.addToCart(storeCartDto);
+    await this.productService.addToCart(storeCartDto);
 
     return res.status(201).json({
-      // data: newProduct,
       statusCode: 201,
-      message: 'product created',
+      message: 'item added to cart',
       status: true,
     });
   }

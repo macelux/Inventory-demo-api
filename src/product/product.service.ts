@@ -34,11 +34,21 @@ export class ProductService {
   }
 
   async addToCart(cartDto: CartDto) {
-    const cart = this.cartRepository.create(cartDto);
-    console.log(cart);
-    for (const key of Object.keys(cartDto)) {
-      console.log(' ia ma here');
+    const cartData = {
+      customerId: cartDto.customer_id,
+      total: cartDto.total,
+    };
+
+    for (let i = 0; i < cartDto.cart_items.length; i++) {
+      const productId: number = cartDto.cart_items[i]?.product_id;
+      const quantity: number = cartDto.cart_items[i]?.quantity;
+
+      const findProduct = await this.productRepository.findOne({
+        id: productId,
+      });
+      findProduct.quantity = findProduct.quantity - quantity;
+      await this.productRepository.save(findProduct);
     }
-    return this.cartRepository.save(cart);
+    return this.cartRepository.save(cartData);
   }
 }

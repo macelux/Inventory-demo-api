@@ -30,15 +30,8 @@ export class CartDto {
   @IsNumber()
   total: number;
 
-  @IsNotEmpty({
-    message: 'date_placed cannot be empty',
-  })
-  date_placed: string;
- 
-
   @IsArray()
   @ValidateNested({ each: true })
   @Type(() => CartItemValidation) // validate each cart item array in request
   cart_items: CartItemValidation[];
 }
-

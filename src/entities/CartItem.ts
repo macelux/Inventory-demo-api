@@ -6,7 +6,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity()
+@Entity('cart_items')
 export class CartItem {
   @PrimaryGeneratedColumn()
   id: number;

@@ -1,4 +1,5 @@
 import {
+  BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
@@ -6,8 +7,8 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity('cart')
-export class Cart {
+@Entity('carts')
+export class Cart extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -22,7 +23,7 @@ export class Cart {
   @Column({
     name: 'date_placed',
   })
-  datePlaced: Date;
+  date_placed: Date;
 
   @CreateDateColumn()
   created_at: Date;

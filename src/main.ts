@@ -1,6 +1,12 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import {
+  SwaggerModule,
+  DocumentBuilder,
+  SwaggerCustomOptions,
+  SwaggerDocumentOptions,
+} from '@nestjs/swagger';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('dotenv').config();
 
@@ -8,8 +14,33 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // include validation
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(new ValidationPipe({
+      whitelist: true,
+      transform: true,
+    }),
+  );
 
+  // swagger bootstrap
+  const config = new DocumentBuilder()
+    .setTitle('Cats example')
+    .setDescription('The cats API description')
+    .setVersion('1.0')
+    .addTag('cats')
+    .build();
+  const options: SwaggerDocumentOptions = {
+    operationIdFactory: (controllerKey: string, methodKey: string) => methodKey,
+    };
+  const document = SwaggerModule.createDocument(app, config, options);
+  const customOptions: SwaggerCustomOptions = {
+    swaggerOptions: {
+      persistAuthorization: true,
+    },
+    customSiteTitle: 'Inventory API Docs',
+  };
+  SwaggerModule.setup('api', app, document, customOptions);
+
+
+  // define application port
   const port = process.env.PORT || 5000;
 
   await app.listen(port, () => {

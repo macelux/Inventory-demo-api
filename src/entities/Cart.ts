@@ -9,7 +9,7 @@ import {
 
 @Entity('carts')
 export class Cart extends BaseEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
   @Column({
@@ -19,11 +19,6 @@ export class Cart extends BaseEntity {
 
   @Column()
   total: number;
-
-  @Column({
-    name: 'date_placed',
-  })
-  date_placed: Date;
 
   @CreateDateColumn()
   created_at: Date;

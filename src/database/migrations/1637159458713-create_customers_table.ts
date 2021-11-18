@@ -11,11 +11,12 @@ export class createCustomersTable1637159458713 implements MigrationInterface {
             type: 'integer',
             isPrimary: true,
             isGenerated: true,
-            // generationStrategy: 'increment',
+            generationStrategy: 'increment',
           },
           {
             name: 'email',
             type: 'varchar',
+            isUnique: true,
           },
           {
             name: 'first_name',
@@ -35,11 +36,6 @@ export class createCustomersTable1637159458713 implements MigrationInterface {
             name: 'phone',
             type: 'text',
             isNullable: true,
-          },
-          {
-            name: 'status',
-            type: 'tinyint',
-            default: 0,
           },
           {
             name: 'created_at',

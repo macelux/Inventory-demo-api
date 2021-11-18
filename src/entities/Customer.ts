@@ -1,38 +1,49 @@
+import { Exclude } from 'class-transformer';
+import * as bcrypt from 'bcryptjs';
 import {
+  BaseEntity,
+  BeforeInsert,
   Column,
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
-  Timestamp,
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity()
-export class Customer {
-  @PrimaryGeneratedColumn()
+@Entity('customers')
+export class Customer extends BaseEntity {
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @Column()
+  @Column({ name: 'email', nullable: false, unique: true })
   email: string;
 
-  @Column()
-  firstName: string;
+  @Column({ name: 'first_name', nullable: true })
+  first_name: string;
 
-  @Column()
-  lastName: string;
+  @Column({ name: 'last_name', nullable: true })
+  last_name: string;
 
-  @Column()
+  @Exclude()
+  @Column({ nullable: false })
   password: string;
 
   @Column()
   phone: string;
 
-  @Column()
-  status: number;
-
   @CreateDateColumn()
-  created_at: Timestamp;
+  created_at: Date;
 
   @UpdateDateColumn()
-  updated_at: Timestamp;
+  updated_at: Date;
+
+
+  @BeforeInsert()
+  async hashPassword() {
+    this.password = await bcrypt.hash(this.password, 8);
+  }
+
+  async validatePassword(password: string): Promise<boolean> {
+    return bcrypt.compare(password, this.password);
+  }
 }

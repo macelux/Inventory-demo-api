@@ -4,12 +4,11 @@ import {
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
-  Timestamp,
   UpdateDateColumn,
 } from 'typeorm';
 
 @Entity('products')
-export class Product extends BaseEntity{
+export class Product extends BaseEntity {
   @PrimaryGeneratedColumn('increment')
   public id: number;
 

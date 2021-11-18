@@ -3,6 +3,8 @@ import { ConnectionOptions } from 'typeorm';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require('dotenv').config();
 
+const PROD_ENV = 'production';
+
 // const connectionOptions: ConnectionOptions = {
 //   type: process.env.DB_CONNECTION as any,
 //   host: process.env.DB_HOST,
@@ -26,7 +28,8 @@ const connectionOptions: ConnectionOptions = {
   type: 'sqlite',
   database: 'db',
   // logging: ['warn', 'error'],
-  logging: process.env.DB_LOGGING === 'true' ? true : false,
+  logging: true,
+  logger: process.env.NODE_ENV === PROD_ENV ? 'file' : 'debug',
   entities: [process.env.ENTTITY_PATH],
   migrations: [process.env.MIGRATION_PATH],
   //   subscribers: ['src/subscriber/**/*.ts'],

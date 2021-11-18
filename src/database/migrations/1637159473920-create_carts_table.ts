@@ -11,7 +11,6 @@ export class createCartsTable1637159473920 implements MigrationInterface {
             type: 'integer',
             isPrimary: true,
             isGenerated: true,
-            generationStrategy: 'increment',
           },
           {
             name: 'customer_id',
@@ -23,11 +22,6 @@ export class createCartsTable1637159473920 implements MigrationInterface {
             scale: 2,
             precision: 10,
             default: 0,
-          },
-          {
-            name: 'date_placed',
-            type: 'DATETIME',
-            default: 'CURRENT_TIMESTAMP',
           },
           {
             name: 'created_at',

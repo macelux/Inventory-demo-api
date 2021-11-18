@@ -8,7 +8,7 @@ import {
 
 @Entity('cart_items')
 export class CartItem {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
   @Column({

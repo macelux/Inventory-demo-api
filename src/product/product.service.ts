@@ -14,7 +14,7 @@ export class ProductService {
     @InjectRepository(Cart) private cartRepository: Repository<Cart>,
     @InjectRepository(CartItem)
     private cartItemRepository: Repository<CartItem>,
-  ) { }
+  ) {}
 
   async createProduct(productDto: ProductDto): Promise<ProductDto> {
     return this.productRepository.save(productDto);
@@ -25,11 +25,26 @@ export class ProductService {
   }
 
   async updateProducts(product: any, id: number) {
-    return await this.productRepository.update({ id: id }, product);
+    const updateProduct = await this.productRepository.findOne({ id: id });
+
+    if (updateProduct) {
+      updateProduct.name = product.name;
+      updateProduct.price = product.price;
+      updateProduct.quantity = product.quantity;
+      return await updateProduct.save();
+    } else {
+      return false;
+    }
   }
 
   async deleteProduct(id: number) {
-    return await this.productRepository.delete({ id: id });
+    const deleteProduct = await this.productRepository.findOne({ id: id });
+
+    if (deleteProduct) {
+      return await deleteProduct.remove();
+    } else {
+      return false;
+    }
   }
 
   async addToCart(cartDto: CartDto) {

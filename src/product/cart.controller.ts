@@ -1,8 +1,9 @@
-import { Body, Controller, Get, Post, Res } from '@nestjs/common';
+import { Body, Controller, Get, Post, Res, UseGuards } from '@nestjs/common';
 import { ProductDto } from './dto/product.dto';
 import { FormDataRequest } from 'nestjs-form-data';
 import { ProductService } from './product.service';
 import { CartDto } from './dto/cart.dto';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Controller('api/v1/carts')
 export class CartController {
@@ -10,6 +11,7 @@ export class CartController {
 
 
   @Post('/')
+  @UseGuards(JwtAuthGuard)
   @FormDataRequest()
   async store(@Res() res, @Body() storeCartDto: CartDto) {
     await this.productService.addToCart(storeCartDto);

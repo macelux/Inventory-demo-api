@@ -13,7 +13,10 @@ import {
 import { ProductDto } from './dto/product.dto';
 import { ProductService } from './product.service';
 import { FormDataRequest } from 'nestjs-form-data';
+import { ApiTags } from '@nestjs/swagger';
 
+
+@ApiTags('admin products')
 @Controller('api/v1/admin/products')
 export class AdminProductController {
   constructor(private productService: ProductService) { }
@@ -58,7 +61,7 @@ export class AdminProductController {
       params.id,
     );
 
-    if (isUpdated.affected) {
+    if (isUpdated) {
       return res.status(200).json({
         data: {},
         statusCode: 200,
@@ -77,7 +80,8 @@ export class AdminProductController {
   async destroy(@Param() params, @Res() res) {
     const isDeleted = await this.productService.deleteProduct(params.id);
  
-    if (isDeleted.affected) {
+    console.log(isDeleted);
+    if (isDeleted) {
       return res.status(200).json({
         data: {},
         statusCode: 200,

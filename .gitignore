@@ -5,3 +5,4 @@ dist/
 tmp/
 temp/
 .env
+rest_api.http

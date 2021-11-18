@@ -8,7 +8,7 @@ export class createCartItemsTable1637159502713 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'int',
+            type: 'integer',
             isPrimary: true,
             isGenerated: true,
             generationStrategy: 'increment',

@@ -1,8 +1,9 @@
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class ProductDto {
-  id: number;
 
+  @ApiProperty()
   @IsString({
     message: 'This can only contain text values',
   })
@@ -11,16 +12,17 @@ export class ProductDto {
   })
   name: string;
 
+  @ApiProperty()
   @IsNotEmpty({
     message: 'This field cannot be empty',
   })
   @IsNumber()
   price: number;
 
+  @ApiProperty()
   @IsNotEmpty({
     message: 'This field cannot be empty',
   })
-
   @IsNumber()
   quantity: number;
 }

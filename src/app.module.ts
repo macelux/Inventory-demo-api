@@ -10,12 +10,6 @@ import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
-    // ConfigModule.forRoot({
-    //   isGlobal: true,
-    // }),
-    // TypeOrmModule.forRootAsync({
-    //   useFactory: () => connectionOptions,
-    // }),
     TypeOrmModule.forRoot(connectionOptions),
     ProductsModule,
     DatabaseModule,

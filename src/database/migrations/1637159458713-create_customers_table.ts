@@ -8,7 +8,7 @@ export class createCustomersTable1637159458713 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'int',
+            type: 'integer',
             isPrimary: true,
             isGenerated: true,
             generationStrategy: 'increment',
@@ -16,6 +16,7 @@ export class createCustomersTable1637159458713 implements MigrationInterface {
           {
             name: 'email',
             type: 'varchar',
+            isUnique: true,
           },
           {
             name: 'first_name',
@@ -35,11 +36,6 @@ export class createCustomersTable1637159458713 implements MigrationInterface {
             name: 'phone',
             type: 'text',
             isNullable: true,
-          },
-          {
-            name: 'status',
-            type: 'tinyint',
-            default: 0,
           },
           {
             name: 'created_at',

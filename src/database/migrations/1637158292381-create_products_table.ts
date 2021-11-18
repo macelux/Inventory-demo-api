@@ -8,10 +8,9 @@ export class createProductsTable1637158292381 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'int',
+            type: 'integer',
             isPrimary: true,
             isGenerated: true,
-            generationStrategy: 'increment',
           },
           {
             name: 'name',

@@ -13,7 +13,7 @@ import {
 import { ProductDto } from './dto/product.dto';
 import { ProductService } from './product.service';
 import { FormDataRequest } from 'nestjs-form-data';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
 
 @ApiTags('admin products')
@@ -22,6 +22,7 @@ export class AdminProductController {
   constructor(private productService: ProductService) { }
 
   @Get('/')
+  @ApiResponse({ status: 200, description: 'product fetched' })
   async index(@Res() res) {
     return res.status(200).json({
       data: await this.productService.findAllProducts(),
@@ -32,6 +33,7 @@ export class AdminProductController {
   }
 
   @Post()
+  @ApiResponse({ status: 201, description: 'product created' })
   @FormDataRequest()
   async store(@Res() res, @Body() storeProductDto: ProductDto) {
     const newProduct = await this.productService.createProduct(storeProductDto);
@@ -45,8 +47,9 @@ export class AdminProductController {
   }
 
   @Put('/:id')
+  @ApiResponse({ status: 200, description: 'product updated' })
   async update(
-    @Param() params,
+    @Param('id') id: number,
     @Res() res,
     @Body() updateProductDto: ProductDto,
   ) {
@@ -58,7 +61,7 @@ export class AdminProductController {
 
     const isUpdated = await this.productService.updateProducts(
       validatedRequest,
-      params.id,
+      id,
     );
 
     if (isUpdated) {
@@ -76,10 +79,11 @@ export class AdminProductController {
     }
   }
 
-  @Delete(':id')
-  async destroy(@Param() params, @Res() res) {
-    const isDeleted = await this.productService.deleteProduct(params.id);
- 
+  @Delete('/:id')
+  @ApiResponse({ status: 200, description: 'product deleted' })
+  async destroy(@Param('id') id: number, @Res() res) {
+    const isDeleted = await this.productService.deleteProduct(id);
+
     console.log(isDeleted);
     if (isDeleted) {
       return res.status(200).json({

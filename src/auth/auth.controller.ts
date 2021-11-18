@@ -44,23 +44,31 @@ export class AuthController {
   @Post('/register')
   // @FormDataRequest() //allow request from form data
   async create(@Res() res, @Body() user: CustomerRegisterDto) {
-    const newUser = await this.userService.createCustomer(user);
-    console.log(newUser);
+    const userExist = await this.userService.findCustomerByEmail(user.email);
 
-    const data = {
-      email: newUser?.email,
-      phone: newUser?.phone,
-      firstName: newUser?.first_name,
-      lastName: newUser?.last_name,
-    };
+    if (userExist?.email !== undefined) {
+      return res.status(200).json({
+        message: 'customer already exists',
+        statusCode: 200,
+      });
+    } else {
+      const newUser = await this.userService.createCustomer(user);
 
-    const payload = { userId: newUser.id };
+      const data = {
+        email: newUser?.email,
+        phone: newUser?.phone,
+        firstName: newUser?.first_name,
+        lastName: newUser?.last_name,
+      };
 
-    return res.status(201).json({
-      message: 'registration successful',
-      data: data,
-      statusCode: 201,
-      token: this.jwtService.sign(payload),
-    });
+      const payload = { userId: newUser.id };
+
+      return res.status(201).json({
+        message: 'registration successful',
+        data: data,
+        statusCode: 201,
+        token: this.jwtService.sign(payload),
+      });
+    }
   }
 }
